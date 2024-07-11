@@ -1,0 +1,59 @@
+\documentclass{article} % for A4 size paper
+\newlength{\mymargin}
+\setlength{\mymargin}{1.0cm}
+\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=\mymargin]{geometry} % Set to half letter size with margins
+\usepackage{tikz}
+\usepackage{pgffor} % For the foreach loop
+\usepackage{fancyhdr} % For custom headers and footers
+\usepackage{ifthen} % For conditional statements
+
+\pagestyle{empty} % We will handle the page number manually
+
+\begin{document}
+\def\gutter{0.5cm}
+\foreach \i in {1,...,4} {
+    \begin{tikzpicture}[remember picture, overlay]
+
+    \tikzset{normal lines/.style={gray, very thin}} 
+    \tikzset{margin lines/.style={gray, thick}} 
+    \tikzset{mm lines/.style={gray, ultra thin}} 
+    \tikzset{strong lines/.style={black, very thin}} 
+    \tikzset{master lines/.style={black, very thick}} 
+    \tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+    \node at (current page.south west){
+      \begin{tikzpicture}[remember picture, overlay]
+
+        \ifthenelse{\isodd{\i}}{
+          % Odd page: different drawing length
+          % \foreach \y in {1.5, 2.08,...,20} 
+          %   \draw[style=normal lines](1+\gutter,\y) -- (13, \y);
+          \foreach \x in {1.5,2.0,...,13} {
+            \foreach \y in {1.5, 2.0,...,20} {
+              \fill[color=gray] (\x,\y) circle (0.2mm);
+        }
+    }
+            
+        }{
+          % Even page: different drawing length
+          % \foreach \y in {1.5, 2.08,...,20} 
+          %   \draw[style=normal lines](1,\y) -- (13-\gutter, \y); 
+          \foreach \x in {1,1.5,...,12.5} {
+            \foreach \y in {1.5, 2.0,...,20} {
+              \fill[color=gray] (\x,\y) circle (0.2mm);
+        }
+    }
+            
+        }
+
+      \end{tikzpicture}
+    };
+    
+    % Add the page number 0.5 cm from the bottom of the page
+    \node at (current page.south) [yshift=1cm] {\textcolor{gray}{\fontsize{10}{12}\selectfont\thepage}};    
+    \end{tikzpicture}
+    
+    \newpage
+}
+
+\end{document}
