@@ -2,7 +2,7 @@
 ## What Even Is This?
 I've been doing some bookbinding lately and have created a couple typesets in LaTex. After finally unpacking my fountain pens after my move, I want to bind some blank (or not-quite so blank) notebooks! I'm a bit picky about lines, etc on my paper, have a perfectly good laser printer in my basement, and with a little bit of Google-fu, can have passable LaTex to generate what I want!
 ## How Will You Bind This?
-Good question! The first step is to create LaTex files to generate a page of paper for my notebooks- We better back up. let's define a few terms:
+Good question! The first step is to create LaTex files to generate a page of paper for my noteboo- we better back up. Let's define a few terms:
 - page : Single sided page of a notebook (half-letter or A5 for example)
 - sheet : single piece of original paper (letter or A4 for example)
 - signature: a collection of sheets folded together (2-8 sheets, depends on the binding/binder)
