@@ -1,0 +1,44 @@
+\documentclass[a5paper, 0pt]{article} % for A4 size paper
+\usepackage{tikz}
+\usepackage{pgffor} % For the foreach loop
+\usepackage{fancyhdr} % For custom headers and footers
+\usepackage{ifthen} % For conditional statements
+
+\pagestyle{empty} % We will handle the page number manually
+
+\begin{document}
+\def\gutter{0.5}
+\foreach \i in {1,...,200} {
+    \begin{tikzpicture}[remember picture, overlay]
+
+    \tikzset{normal lines/.style={gray, very thin}} 
+    \tikzset{margin lines/.style={gray, thick}} 
+    \tikzset{mm lines/.style={gray, ultra thin}} 
+    \tikzset{strong lines/.style={black, very thin}} 
+    \tikzset{master lines/.style={black, very thick}} 
+    \tikzset{dashed master lines/.style={loosely dashed, black, very thick}} 
+
+    \node at (current page.south west){
+      \begin{tikzpicture}[remember picture, overlay]
+
+        \ifthenelse{\isodd{\i}}{
+          % Odd page: different drawing length
+          \foreach \y in {1.5, 2.08,...,19.5} 
+            \draw[style=normal lines](1+\gutter,\y) -- (13.8, \y); 
+        }{
+          % Even page: different drawing length
+          \foreach \y in {1.5, 2.08,...,19.5} 
+            \draw[style=normal lines](1,\y) -- (13.8-\gutter, \y); 
+        }
+
+      \end{tikzpicture}
+    };
+    
+    % Add the page number 0.5 cm from the bottom of the page
+    \node at (current page.south) [yshift=1cm] {\textcolor{gray}{\fontsize{10}{12}\selectfont\thepage}};    
+    \end{tikzpicture}
+    
+    \newpage
+}
+
+\end{document}
