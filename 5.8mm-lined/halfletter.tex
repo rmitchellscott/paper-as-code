@@ -10,7 +10,7 @@
 \pagestyle{empty} % We will handle the page number manually
 
 \begin{document}
-\def\gutter{0.5cm}
+\def\gutter{0.5}
 \foreach \i in {1,...,200} {
     \begin{tikzpicture}[remember picture, overlay]
 
@@ -31,7 +31,7 @@
         }{
           % Even page: different drawing length
           \foreach \y in {1.5, 2.08,...,20} 
-            \draw[style=normal lines](1,\y) -- (13-\gutter, \y); 
+            \draw[style=normal lines](1,\y) -- (13-\gutter, \y);
         }
 
       \end{tikzpicture}
